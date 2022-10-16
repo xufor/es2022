@@ -105,3 +105,18 @@
 // console.log(Object.hasOwn(object2, 'property3'));
 
 // this person should have some serious explanation to this kind of blunder 
+
+
+// ========================================== top level await ========================================== //
+
+
+// usually we had to do an await like this
+// async function anAsyncFunction() {
+//     await import('./another_script.js');
+// }
+
+// anAsyncFunction();
+
+// but we can now use await without wrapping it in a function
+// and hence the name, "top level await"
+// await import('./another_script.js');
