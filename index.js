@@ -217,3 +217,81 @@
 // const tiger = new Animalia('Panthera', 'P. tigris');
 // const baboon = new Animalia('Papio', 'P. hamadryas');
 // console.log(Animalia.totalAnimalsRegistered);
+
+
+// >>>>> PRIVATE INSTANCE FIELDS <<<<< //
+
+// class SomeLibrary {
+//   // these functions should not be exposed to the user of the library
+//   // coz any change in these will break the working of our library
+//   #windowInstance = null;
+
+//   #openPopupWindow(popupUrl, height, width) {
+//     let left = screen.width / 2 - width / 2;
+//     let top = screen.height / 2 - height / 2;
+
+//     this.#windowInstance = window.open(
+//       popupUrl,
+//       'childWindow',
+//       'status=1, height=' +
+//         height +
+//         ', width=' +
+//         width +
+//         ', toolbar=0,resizable=0,top=' +
+//         top +
+//         ', left=' +
+//         left
+//     );
+//   }
+
+//   // these functions can be exposed to the user of the library
+//   openWindow() {
+//     this.#openPopupWindow('http://www.google.com', 500, 500);
+//   }
+  
+//   closeWindow() {
+//     this.#windowInstance.close();
+//   }
+// }
+
+// const libInstance = new SomeLibrary();
+// libInstance.openWindow();
+// setTimeout(() => libInstance.closeWindow(), 5000);
+
+// >>>>> PRIVATE STATIC FIELDS <<<<< //
+
+// class SomeLibrary {
+//   // extending the previous example
+//   // lets say for each and every instance created we don't want to create a new window
+//   static #windowInstance = null;
+
+//   static #openPopupWindow(popupUrl, height, width) {
+//     let left = screen.width / 2 - width / 2;
+//     let top = screen.height / 2 - height / 2;
+
+//     SomeLibrary.#windowInstance = window.open(
+//       popupUrl,
+//       'childWindow',
+//       'status=1, height=' +
+//         height +
+//         ', width=' +
+//         width +
+//         ', toolbar=0,resizable=0,top=' +
+//         top +
+//         ', left=' +
+//         left
+//     );
+//   }
+
+//   // these functions can be exposed to the user of the library
+//   static openWindow() {
+//     SomeLibrary.#openPopupWindow('http://www.google.com', 500, 500);
+//   }
+  
+//   static closeWindow() {
+//     SomeLibrary.#windowInstance.close();
+//   }
+// }
+
+// SomeLibrary.openWindow();
+// setTimeout(() => SomeLibrary.closeWindow(), 5000);
