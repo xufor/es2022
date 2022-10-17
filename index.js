@@ -40,7 +40,6 @@
 // console.log(arr.at(2) === arr.myImplementationOfAt(2));
 // console.log(arr.at(5) === arr.myImplementationOfAt(5));
 
-
 // ========================================== Object.hasOwn() ========================================== //
 
 // const object1 = {
@@ -104,11 +103,9 @@
 // console.log(Object.hasOwn(object2, 'property1'));
 // console.log(Object.hasOwn(object2, 'property3'));
 
-// this person should have some serious explanation to this kind of blunder 
-
+// this person should have some serious explanation to this kind of blunder
 
 // ========================================== top level await ========================================== //
-
 
 // usually we had to do an await like this
 // async function anAsyncFunction() {
@@ -120,3 +117,63 @@
 // but we can now use await without wrapping it in a function
 // and hence the name, "top level await"
 // await import('./another_script.js');
+
+// ========================================== error.cause ========================================== //
+
+// now we can also pass the actual error that caused us to throw an error
+// function function1() {
+//   try {
+//     let ref = null;
+//     ref();
+//   } catch (error) {
+//     throw new Error('Error in function 1.', { cause: error });
+//   }
+// }
+
+// function function2() {
+//   try {
+//     function1();
+//   } catch (error) {
+//     console.log('Message: ', error.message);
+//     console.log('Cause: ', error.cause);
+//     console.log('Message of cause error: ', error.cause.message);
+//   }
+// }
+
+// function2();
+
+// ========================================== New Class Members ========================================== //
+
+// >>>>> PUBLIC INSTANCE FIELDS <<<<< //
+
+// earlier public fields used to declared like this, have no other way to safely declare without using contructor
+// class Animalia {
+//   constructor(genus, species) {
+//     this.genus = genus;
+//     this.species = species;
+//   }
+
+//   printDetails() {
+//     console.log(`genus: ${this.genus}\nspecies: ${this.species}`);
+//   }
+// }
+
+// const dog = new Animalia('Canis lupus', 'Canis');
+
+// this is a public field
+// dog.printDetails();
+
+// now we can also create public fields like this
+// this is super readable as we do not need to look for the constructor to know the instance fields.
+// also, we can give a default value without using a contructor
+// class Animalia {
+//   genus = '';
+//   species = '';
+
+//   printDetails() {
+//     console.log(`genus: ${this.genus}\nspecies: ${this.species}`);
+//   }
+// }
+
+// const dog = new Animalia('Canis lupus', 'Canis');
+// dog.printDetails();
