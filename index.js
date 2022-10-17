@@ -146,7 +146,7 @@
 
 // >>>>> PUBLIC INSTANCE FIELDS <<<<< //
 
-// earlier public fields used to declared like this, have no other way to safely declare without using contructor
+// earlier public instance fields used to declared like this, have no other way to safely declare without using contructor
 // class Animalia {
 //   constructor(genus, species) {
 //     this.genus = genus;
@@ -163,7 +163,7 @@
 // this is a public field
 // dog.printDetails();
 
-// now we can also create public fields like this
+// now we can also create public instance fields like this
 // this is super readable as we do not need to look for the constructor to know the instance fields.
 // also, we can give a default value without using a contructor
 // class Animalia {
@@ -177,3 +177,43 @@
 
 // const dog = new Animalia('Canis lupus', 'Canis');
 // dog.printDetails();
+
+
+// >>>>> PUBLIC STATIC FIELDS <<<<< //
+
+// earlier public static fields used to declared like this
+// STATIC means not related to [[instance]] but its related to [[class]]
+// class Animalia {
+//   constructor(genus, species) {
+//     this.genus = genus;
+//     this.species = species;
+//     Animalia.totalAnimalsRegistered += 1; 
+//   }
+
+//   printDetails() {
+//     console.log(`genus: ${this.genus}\nspecies: ${this.species}`);
+//   }
+// }
+
+// Animalia.totalAnimalsRegistered = 0;
+
+// new way of creating public static fields is this
+// class Animalia {
+//   static totalAnimalsRegistered = 0;
+
+//   constructor(genus, species) {
+//     this.genus = genus;
+//     this.species = species;
+//     Animalia.totalAnimalsRegistered += 1; 
+//   }
+
+//   printDetails() {
+//     console.log(`genus: ${this.genus}\nspecies: ${this.species}`);
+//   }
+// }
+
+// console.log(Animalia.totalAnimalsRegistered);
+// const dog = new Animalia('Canis lupus', 'Canis');
+// const tiger = new Animalia('Panthera', 'P. tigris');
+// const baboon = new Animalia('Papio', 'P. hamadryas');
+// console.log(Animalia.totalAnimalsRegistered);
