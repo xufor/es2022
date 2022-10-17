@@ -295,3 +295,29 @@
 
 // SomeLibrary.openWindow();
 // setTimeout(() => SomeLibrary.closeWindow(), 5000);
+
+
+// >>>>> STATIC BLOCKS <<<<< //
+
+// static blocks are basically a way to initialize static fields
+// they can be very useful if the class has no instance members and no constructors
+
+// class SomeClass {
+//   static countOfRandomNumbers = 5;
+//   static randomNumberList = [];
+
+//   static {
+//     // nice thing to note is that static block is executed as soon as the class is read by the interpreter
+//     // also note that we can use [[this]] instead of class name in static scopes
+//     console.log('executing static block');
+//     for(let i = 0; i < this.countOfRandomNumbers; i++) {
+//       this.randomNumberList.push(Math.round(Math.random() * 100));
+//     }
+//   }
+
+//   static printData() {
+//     console.log(this.randomNumberList);
+//   }
+// }
+
+// SomeClass.printData();
