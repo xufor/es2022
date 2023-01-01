@@ -105,6 +105,12 @@
 
 // this person should have some serious explanation to this kind of blunder
 
+// const object3 = Object.create(null);
+// no hasOwnProperty present in prototype chain
+// console.log(object3.hasOwnProperty); 
+// Object.hasOwn() saves the day
+// console.log(Object.hasOwn(object3, 'property1')); 
+
 // ========================================== top level await ========================================== //
 
 // usually we had to do an await like this
