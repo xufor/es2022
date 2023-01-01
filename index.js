@@ -357,3 +357,11 @@
 // const anotherNow = Temporal.Now.plainDateTimeISO();
 // console.log(now.since(anotherNow).toString());
 
+// ========================================== Regexp Match Indices ========================================== //
+
+// const wordsAndNumbers = 'a42very5happy989new776year452';
+// const regex = /\d+/gd;
+// const matches = wordsAndNumbers.matchAll(regex);
+// notice the indices property in the array of results
+// console.log([...matches]);
+
