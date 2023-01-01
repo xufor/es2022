@@ -347,3 +347,13 @@
 
 // console.log(shape.hasArea(shape), shape.hasArea(animal));
 
+// ========================================== Temporal API ========================================== //
+
+// const now = Temporal.Now.plainDateTimeISO();
+// console.log(now.toString());
+// console.log(now.add({ days: 1, months: 1, years: 1 }).toString());
+// console.log(now.subtract({ days: 1, months: 1, years: 1 }).toString());
+
+// const anotherNow = Temporal.Now.plainDateTimeISO();
+// console.log(now.since(anotherNow).toString());
+
