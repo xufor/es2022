@@ -201,6 +201,7 @@
 //   }
 // }
 
+// this is very much like C++
 // Animalia.totalAnimalsRegistered = 0;
 
 // new way of creating public static fields is this
