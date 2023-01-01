@@ -328,3 +328,22 @@
 // }
 
 // SomeClass.printData();
+
+// >>>>> SLOT CHECKS <<<<< //
+
+// class Shape {
+//     sides = 4;
+//     #area = 67;
+
+//     hasArea(obj) {
+//         return #area in obj;
+//     }
+// }
+
+// class Animal {}
+
+// const shape = new Shape();
+// const animal = new Animal();
+
+// console.log(shape.hasArea(shape), shape.hasArea(animal));
+
