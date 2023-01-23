@@ -1,115 +1,62 @@
 // ========================================== .at() method ========================================== //
-// console.log(Array.prototype);
+// const arr = ['hello', 5, false, 'last value'];
 
-// const arr = ['hello', 5, false];
-// what will this line print?
-// console.log(arr[0]);
-// will the below line throw an error?
-// console.log(arr[5]);
-// will the below line throw an error?
-// console.log(arr[-1]);
-
-// what to do if we don't know the size of the arr and we want to access the last element?
+// how to access the last element?
 // console.log(arr[arr.length - 1]);
 
 // but thats a lot of code, RIGHT?
-// ES22 has a solution for this and spoiler alert -> Python lists introduced this feature a long time ago!
+// ES2022 has a solution for this and python coders know -> Python lists introduced this feature a long time ago!
 // console.log(arr.at(-1));
 
-// predict the output for the next line
+// predict the output for the next line, its easy
 // console.log(arr.at(-4));
 
 // predict the output for the next line
-// console.log(arr.at(-3));
+// console.log(arr.at(-5));
 
-// predict the output for the next line
+// but hey this is no surprise
+// console.log(arr.at(10));
+
+// and if no argument is provided
 // console.log(arr.at());
 
 // this function works on strings too!
 // console.log("A string".at(-1));
 
-// write a polyfill for this function (only for arrays)??
-// Array.prototype.myImplementationOfAt = function(index = 0) {
-//     return this[index < 0 ? index + this.length : index];
-// }
-
-// console.log(arr.at(-1) === arr.myImplementationOfAt(-1));
-// console.log(arr.at(-4) === arr.myImplementationOfAt(-4));
-// console.log(arr.at(-3) === arr.myImplementationOfAt(-3));
-// console.log(arr.at() === arr.myImplementationOfAt());
-// console.log(arr.at(2) === arr.myImplementationOfAt(2));
-// console.log(arr.at(5) === arr.myImplementationOfAt(5));
-
 // ========================================== Object.hasOwn() ========================================== //
 
-// const object1 = {
-//     property1: "10",
-//     property2: function() {
-//         console.log(this.property1);
-//     }
-// };
+// lets quicky create a prototype chain
+// const obj1 = { property1: 'I am property 1' };
+// const obj2 = { properyt2: 'I am property 2' };
 
-// const object2 = {
-//     property3: 30,
-//     property4: function() {
-//         console.log(this.property1, this.property3, this.property1 + this.property3);
-//     },
-//     property5: function() {
-//         console.log(this.property1, this.property3, this.property1 - this.property3);
-//     }
-// }
+// and the prototype chain is ready
 
-// object2.property4();
-// object2.property5();
+// Object.setPrototypeOf(obj2, obj1);
 
-// Object.setPrototypeOf(object2, object1);
+// the chain looks like this  obj2 -----> obj1 ----->  Object.prototype ---> null
 
-// object2.property4();
-// object2.property5();
+// obj2 has property2
+// obj1 has property1
+// Object.prototype has many instance methods
 
-// what just happened?
-// initially the prototype chain for object1 was: object1 ------> Object.prototype ------> null
-// similarly the prototype chain for object2 was: object2 ------> Object.prototype ------> null
-// after Object.setPrototypeOf(object2, object1) executed
+// we can access if property1 in obj2, which is from obj1
+// console.log(obj2.property1);
 
-// the prototype chain for for object 1 was still the same
-// but the prototype chain for object2 became: object2 ------> object1 ----->  Object.prototype ------> null
-// which means any property we try to access in object2 will be searched in object1
-
-// thus we should be able to do
-// console.log(object2.property1);
-
-// this is a trick one try to guess this
-// console.log(object2.property2());
-
-// but what if I wanted to check if object2 has a property of its own and it has not borrowed it from object1, we can do
-// console.log(object2.hasOwnProperty('property3'));
-// console.log(object2.hasOwnProperty('property1'));
-
-// by the way hasOwnProperty is a borrowed property itself!
+// but what if I wanted to check if obj2 has a property of its own and it has not borrowed it from obj1, we can do
+// console.log(obj2.hasOwnProperty('property1'));
 
 // but we can accidentally or intensionally override hasOwnProperty by defining it on object2 itself
-// object2.hasOwnProperty = () => 'Buzzinga!';
+// obj2.hasOwnProperty = () => 'Buzzinga!';
 
 // now if we try the same function
-// console.log(object2.hasOwnProperty('property1'));
+// console.log(obj2.hasOwnProperty('property1'));
 
 // thus now we can use a static method from the Object global
-// console.log(Object.hasOwn(object2, 'property1'));
-// console.log(Object.hasOwn(object2, 'property3'));
+// console.log(Object.hasOwn(obj2, 'property1'));
 
 // but what if someone is wicked enough to do this
-// Object.hasOwn = () => 'Buzzinga';
-// console.log(Object.hasOwn(object2, 'property1'));
-// console.log(Object.hasOwn(object2, 'property3'));
-
-// this person should have some serious explanation to this kind of blunder
-
-// const object3 = Object.create(null);
-// no hasOwnProperty present in prototype chain
-// console.log(object3.hasOwnProperty); 
-// Object.hasOwn() saves the day
-// console.log(Object.hasOwn(object3, 'property1')); 
+// Object.hasOwn = () => 'Bigger Buzzinga!';
+// console.log(Object.hasOwn(obj2, 'property1'));
 
 // ========================================== top level await ========================================== //
 
@@ -169,12 +116,11 @@
 // this is a public field
 // dog.printDetails();
 
-// now we can also create public instance fields like this
 // this is super readable as we do not need to look for the constructor to know the instance fields.
 // also, we can give a default value without using a contructor
 // class Animalia {
-//   genus = '';
-//   species = '';
+//   genus = 'default genus';
+//   species = 'default species';
 
 //   printDetails() {
 //     console.log(`genus: ${this.genus}\nspecies: ${this.species}`);
@@ -307,7 +253,7 @@
 // >>>>> STATIC BLOCKS <<<<< //
 
 // static blocks are basically a way to initialize static fields
-// they can be very useful if the class has no instance members and no constructors
+// we need not wait for the first instance to be created
 
 // class SomeClass {
 //   static countOfRandomNumbers = 5;
@@ -329,39 +275,16 @@
 
 // SomeClass.printData();
 
-// >>>>> SLOT CHECKS <<<<< //
-
-// class Shape {
-//     sides = 4;
-//     #area = 67;
-
-//     hasArea(obj) {
-//         return #area in obj;
-//     }
-// }
-
-// class Animal {}
-
-// const shape = new Shape();
-// const animal = new Animal();
-
-// console.log(shape.hasArea(shape), shape.hasArea(animal));
-
-// ========================================== Temporal API ========================================== //
-
-// const now = Temporal.Now.plainDateTimeISO();
-// console.log(now.toString());
-// console.log(now.add({ days: 1, months: 1, years: 1 }).toString());
-// console.log(now.subtract({ days: 1, months: 1, years: 1 }).toString());
-
-// const anotherNow = Temporal.Now.plainDateTimeISO();
-// console.log(now.since(anotherNow).toString());
-
 // ========================================== Regexp Match Indices ========================================== //
 
-// const wordsAndNumbers = 'a42very5happy989new776year452';
+// const wordsAndNumbers = 'a42ve455happy989new776year452';
 // const regex = /\d+/gd;
 // const matches = wordsAndNumbers.matchAll(regex);
-// notice the indices property in the array of results
+// // notice the indices property in the array of results
 // console.log([...matches]);
 
+// Lets run this code in Node.js
+// const wordsAndNumbers = 'a42ve455happy989new776year452';
+// const regex = /\d+/g;
+// const matches = wordsAndNumbers.matchAll(regex);
+// console.log([...matches]);
