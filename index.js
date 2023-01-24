@@ -27,7 +27,7 @@
 
 // lets quicky create a prototype chain
 // const obj1 = { property1: 'I am property 1' };
-// const obj2 = { properyt2: 'I am property 2' };
+// const obj2 = { property2: 'I am property 2' };
 
 // and the prototype chain is ready
 
@@ -45,6 +45,9 @@
 // but what if I wanted to check if obj2 has a property of its own and it has not borrowed it from obj1, we can do
 // console.log(obj2.hasOwnProperty('property1'));
 
+// now lets check if obj2 has property2 as its own property
+// console.log(obj2.hasOwnProperty('property2'));
+
 // but we can accidentally or intensionally override hasOwnProperty by defining it on object2 itself
 // obj2.hasOwnProperty = () => 'Buzzinga!';
 
@@ -57,6 +60,13 @@
 // but what if someone is wicked enough to do this
 // Object.hasOwn = () => 'Bigger Buzzinga!';
 // console.log(Object.hasOwn(obj2, 'property1'));
+
+
+// Another use-case
+// const obj3 = Object.create(null);
+
+// observe in devtools console
+// console.log(obj3);
 
 // ========================================== top level await ========================================== //
 
